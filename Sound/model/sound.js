@@ -26,10 +26,8 @@ const soundVendor = sequelize.define("sound_vendor", {
     allowNull: false,
     type: DataTypes.STRING,
     set(value) {
-      console.log("Value : " + value);
       let saltKey = bcrypt.genSaltSync(10);
       let encryptedPassword = bcrypt.hashSync(value, saltKey);
-      console.log("encryptedPassword : " + encryptedPassword);
       this.setDataValue("password", encryptedPassword);
     },
   },
@@ -41,9 +39,7 @@ const soundVendor = sequelize.define("sound_vendor", {
 
 
 soundVendor.checkPassword = (originalPassword, encryptedPassword) => {
-  console.log("password called");
   let a = bcrypt.compareSync(originalPassword, encryptedPassword);
-  console.log(a);
   return a;
 };
 

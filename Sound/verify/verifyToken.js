@@ -6,13 +6,12 @@ export const verifyVendor = (request,response,next)=>{
         console.log(token);
 
         token = token.split(' ')[1]
-        
-        console.log(token);
         jwt.verify(token,'vendorToken')
         next()
+        // response.status(200).json({message:token}) ;
     } catch (error) {
         console.log(error);
-        return response.status()
+        return response.json({error})
     }
 }
 
